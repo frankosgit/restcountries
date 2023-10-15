@@ -5559,7 +5559,7 @@
     "name": "Gabon",
     "topLevelDomain": [".ga"],
     "alpha2Code": "GA",
-    "alpha3Code": "GAB",
+      "alpha3Code": "GAB",
     "callingCodes": ["241"],
     "capital": "Libreville",
     "altSpellings": ["GA", "Gabonese Republic", "République Gabonaise"],

@@ -1,12 +1,10 @@
 import Image from 'next/image'
-import Navbar from './navigation/page'
-import Searchbar from './searchbar/page'
-import Cards from './cards/page'
+import Navbar from './components/navbar'
+import Cards from './components/cards'
 
 export default function Home() {
   return (
     <>
-      <Navbar /> 
       <Cards />
     </>
   )
