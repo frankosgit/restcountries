@@ -1,6 +1,78 @@
-import React from 'react'
+"use client"
+
+import React, { use } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { DataProvider, useData } from '../shared/dataContext'
+
+
+
 
 export default function Cards() {
+    interface CountryType {
+        name: string;
+        population: number;
+        region: string;
+        capital: string;
+        flag: string;
+        alpha3Code: string;
+    }
+    
+    const data = useData()
+    const [selectedCountries, setSelectedCountries] = useState<CountryType[]>([])
+/*
+    useEffect(() => {
+        if (data) {
+          data.forEach((country) => {
+            console.log("Country Name: " + country.name);
+            console.log("Population: " + country.population);
+            console.log("Region: " + country.region);
+            console.log("Capital: " + country.capital);
+            console.log("Flag URL: " + country.flag);
+            console.log("Alpha3Code: " + country.alpha3Code);
+          });
+        }
+      }, [data]);
+      
+      */
+      
+      
+      
+
+    
+    const randomNumGen = () : number[]=> {
+        let randomNumArray: number[] = [];
+        while (randomNumArray.length < 6) {
+          const randomNum = Math.floor(Math.random() * 250);
+          if (!randomNumArray.includes(randomNum)) {
+            randomNumArray.push(randomNum);
+          }
+        }
+        return randomNumArray;
+      };
+      
+      useEffect(() => {
+        if (data) {
+          let randomNumArray = randomNumGen();
+          const selected = randomNumArray.map((num) => {
+            if (data[num]) {  // Check if the data exists at the selected index
+              return data[num];
+            }
+            return null;  // Or handle it in another way
+          });
+          setSelectedCountries((prevSelected) => [...prevSelected, ...selected.filter(Boolean)]);
+        }
+      }, [data]);
+          
+      
+        useEffect(() => {
+          if (selectedCountries.length > 0) {
+            const countryNames = selectedCountries.map((country) => country.name);
+            const countryPopulation = selectedCountries.map((country) => country.population);
+            console.log("Here are the random country names: " + countryNames + "and here are the populations:" + countryPopulation);
+          }
+        }, [selectedCountries])
+        
+        
 
   return (
     <div className='flex flex-wrap justify-between'>

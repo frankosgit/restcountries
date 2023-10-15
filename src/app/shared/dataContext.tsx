@@ -1,22 +1,37 @@
 // DataContext.tsx
+
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
-interface Data {
-  // Define your data structure here
+interface CountryType {
+        name: string;
+        population: number;
+        region: string;
+        capital: string;
+        flag: string;
+        alpha3Code: string;
 }
 
 interface DataContextProps {
   children: ReactNode;
 }
 
-const DataContext = createContext<Data | undefined>(undefined);
+const DataContext = createContext<CountryType[] | undefined>(undefined);
 
 export function DataProvider({ children }: DataContextProps) {
-  const [data, setData] = useState<Data | undefined>(undefined);
+    const [data, setData] = useState<CountryType[]>([]);
 
   useEffect(() => {
-    // Make your API call and set the data
-  }, []); // Fetch data on component mount
+    fetch('data.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data)
+
+      })
+  .catch((err) => console.log(err))
+}, []);
+
+
+
 
   return (
     <DataContext.Provider value={data}>
