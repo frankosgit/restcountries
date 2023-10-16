@@ -59,7 +59,10 @@ export default function Cards() {
             }
             return null; 
           });
-          setSelectedCountries((prevSelected) => [...prevSelected, ...selected.filter(Boolean)]);
+          setSelectedCountries((prevSelected) => [
+            ...prevSelected,
+            ...selected.filter((country) => country !== null) as CountryType[]
+          ]);
         }
       }, [data]);
           
