@@ -35,7 +35,7 @@ export default function Game() {
     
     setGameCountries((prevSelected) => [...prevSelected, ...filteredSelected]);
     }
-    console.log(gameOver)
+
   }, [data]);
 
 
