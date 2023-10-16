@@ -54,10 +54,10 @@ export default function Cards() {
         if (data) {
           let randomNumArray = randomNumGen();
           const selected = randomNumArray.map((num) => {
-            if (data[num]) {  // Check if the data exists at the selected index
+            if (data[num]) {  
               return data[num];
             }
-            return null;  // Or handle it in another way
+            return null; 
           });
           setSelectedCountries((prevSelected) => [...prevSelected, ...selected.filter(Boolean)]);
         }
