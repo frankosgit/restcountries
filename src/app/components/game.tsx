@@ -94,7 +94,7 @@ return (
       <h1 className='text-4xl text-center mt-10'>Which of the following countries have the larger population?</h1>
     <div className='flex my-20 mb-40'>
          {gameCountries.map((country, index) => (
-          <div onClick={() => handleButtonClick(country)} className="shadow-xl rounded-b-lg my-2 mx-4 w-1/5">
+          <div key={index} onClick={() => handleButtonClick(country)} className="shadow-xl rounded-b-lg my-2 mx-4 w-1/5">
           <img src={country.flag} alt="germanyflag" className="w-full rounded-t-lg" />
               <div className='ml-8 mt-2'>
                   <h1 className="text-3xl font-bold my-2">{country.name}</h1>
