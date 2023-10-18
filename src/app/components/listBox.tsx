@@ -2,19 +2,27 @@
 import { Listbox, Transition } from '@headlessui/react'
 import { useState } from 'react'
 
-const regions = [
-    { id: 0, name: 'Select a region', unavailable: false },
-  { id: 1, name: 'Africa', unavailable: false },
-  { id: 2, name: 'America', unavailable: false },
-  { id: 3, name: 'Asia', unavailable: false },
-  { id: 4, name: 'Europe', unavailable: false },
-  { id: 5, name: 'Oceania', unavailable: false },
-]
 
+interface regionProps {
+    selectedRegion: {
+        id: number;
+        name: string;
+        unavailable: boolean;
+    };
+      setSelectedRegion: (selectedRegion: {
+        id: number;
+        name: string;
+        unavailable: boolean;
+    }) => void;
+    regions: {
+        id: number;
+        name: string;
+        unavailable: boolean;
+    }[];
+}
 
+export default function MyListbox( {regions, selectedRegion, setSelectedRegion}: regionProps) {
 
-export default function MyListbox() {
-    const [selectedRegion , setSelectedRegion] = useState(regions[0])
 
 
   return (

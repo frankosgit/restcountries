@@ -23,19 +23,38 @@ interface NavbarProps {
   darkMode: boolean;
   toggleDarkMode: () => void;
   setDarkMode: (darkMode: boolean) => void;
+  selectedRegion: {
+    id: number;
+    name: string;
+    unavailable: boolean;
+};
+  setSelectedRegion: (selectedRegion: {
+    id: number;
+    name: string;
+    unavailable: boolean;
+}) => void;
+  regions: {
+    id: number;
+    name: string;
+    unavailable: boolean;
+}[];
 }
 
 
-const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, setDarkMode }) => {
+
+
+const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, setDarkMode, selectedRegion, setSelectedRegion, regions }) => {
   const [enabled, setEnabled] = useState(false)
+
 
   const handleClick = () => {
    
     console.log("Dark mode toggled. New value: ", darkMode);
     setDarkMode(!darkMode);
 
-  }
+  
 
+  }
   return (
     <Disclosure as="nav" className="bg-white shadow-lg">
       {({ open }) => (
@@ -62,7 +81,11 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, setDarkMode }
                   <h1 className='text-xl font-mono letter-spacing: 0.05em; '>the countries of the world</h1>
                 </div>
               
-                <MyListbox/>
+                <MyListbox
+                  selectedRegion={selectedRegion}
+                  setSelectedRegion={setSelectedRegion}
+                  regions={regions}
+                />
                 
               
               </div>
