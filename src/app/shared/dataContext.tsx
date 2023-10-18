@@ -1,6 +1,6 @@
 // DataContext.tsx
-
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+"use client"
+import React, { createContext, useContext, useEffect, useState, ReactNode, ProviderProps } from 'react';
 
 interface CountryType {
         name: string;
@@ -15,10 +15,19 @@ interface DataContextProps {
   children: ReactNode;
 }
 
-const DataContext = createContext<CountryType[] | undefined>(undefined);
+interface DataContextValue {
+  data: CountryType[];
+}
+
+
+
+export const DataContext = createContext<DataContextValue| undefined>(undefined);
 
 export function DataProvider({ children }: DataContextProps) {
     const [data, setData] = useState<CountryType[]>([]);
+
+  
+
 
   useEffect(() => {
     fetch('data.json')
@@ -30,11 +39,15 @@ export function DataProvider({ children }: DataContextProps) {
   .catch((err) => console.log(err))
 }, []);
 
+const ContextValue: DataContextValue = {
+  data,
+};  
+
 
 
 
   return (
-    <DataContext.Provider value={data}>
+    <DataContext.Provider value={ContextValue}>
       {children}
     </DataContext.Provider>
   );
